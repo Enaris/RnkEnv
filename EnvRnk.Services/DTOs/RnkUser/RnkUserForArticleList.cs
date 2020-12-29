@@ -7,6 +7,7 @@ namespace EnvRnk.Services.DTOs.RnkUser
     public class RnkUserForArticleList
     {
         public Guid Id { get; set; }
+        public string AspUserId { get; set; }
         public string Email { get; set; }
     }
 }

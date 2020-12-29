@@ -24,16 +24,16 @@ namespace EnvRnk.Services.Services
                 await rnkUserRepo
                     .GetAll()
                     .Include(u => u.AspUser)
-                    .FirstOrDefaultAsync(u => u.AspUserId == aspId)
+                    .FirstOrDefaultAsync(u => u.AspUserId == aspId.ToString())
                 :
                 await rnkUserRepo
                     .GetAll()
-                    .FirstOrDefaultAsync(u => u.AspUserId == aspId);
+                    .FirstOrDefaultAsync(u => u.AspUserId == aspId.ToString());
         }
 
         public async Task<RnkUser> Create(Guid aspUserId)
         {
-            var userToAdd = new RnkUser { AspUserId = aspUserId };
+            var userToAdd = new RnkUser { AspUserId = aspUserId.ToString() };
             await rnkUserRepo.CreateAsync(userToAdd);
             await rnkUserRepo.SaveChangesAsync();
             return userToAdd;

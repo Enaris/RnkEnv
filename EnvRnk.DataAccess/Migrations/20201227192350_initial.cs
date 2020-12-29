@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EnvRnk.DataAccess.Migrations
 {
-    public partial class idsinttoguid : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,15 +157,14 @@ namespace EnvRnk.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    AspUserId = table.Column<Guid>(nullable: false),
-                    AspUserId1 = table.Column<string>(nullable: true)
+                    AspUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RnkUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RnkUsers_AspNetUsers_AspUserId1",
-                        column: x => x.AspUserId1,
+                        name: "FK_RnkUsers_AspNetUsers_AspUserId",
+                        column: x => x.AspUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -182,7 +181,7 @@ namespace EnvRnk.DataAccess.Migrations
                     Minuses = table.Column<int>(nullable: false),
                     CoverUrl = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    AuthorId = table.Column<Guid>(nullable: true)
+                    AuthorId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -192,7 +191,7 @@ namespace EnvRnk.DataAccess.Migrations
                         column: x => x.AuthorId,
                         principalTable: "RnkUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -276,9 +275,9 @@ namespace EnvRnk.DataAccess.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RnkUsers_AspUserId1",
+                name: "IX_RnkUsers_AspUserId",
                 table: "RnkUsers",
-                column: "AspUserId1");
+                column: "AspUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

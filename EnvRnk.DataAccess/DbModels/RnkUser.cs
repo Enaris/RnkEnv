@@ -8,7 +8,7 @@ namespace EnvRnk.DataAccess.DbModels
     {
         public Guid Id { get; set; }
 
-        public Guid AspUserId { get; set; }
+        public string AspUserId { get; set; }
         public AspUser AspUser { get; set; }
 
         public ICollection<Article> Articles { get; set; }

@@ -10,7 +10,8 @@ namespace EnvRnk.AutoMapper
         public static Type[] Maps => new[]
         {
             typeof(ArticleProfiles), 
-            typeof(RnkUserProfiles)
+            typeof(RnkUserProfiles), 
+            typeof(UserArticlePointProfiles)
         };
     }
 }

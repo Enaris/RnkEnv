@@ -5,6 +5,11 @@ namespace EnvRnk.DataAccess.Repositories
 {
     public interface IArticleRepository : IBaseRepository<Article>
     {
-        IQueryable<Article> GetAll(string title = null, string email = null, bool withAuthors = false);
+        IQueryable<Article> GetAll(string title = null,
+            string email = null,
+            bool withAuthors = false,
+            bool newArticles = true,
+            bool ranking = false,
+            bool trending = false);
     }
 }

@@ -127,15 +127,12 @@ namespace EnvRnk.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AspUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AspUserId1")
+                    b.Property<string>("AspUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AspUserId1");
+                    b.HasIndex("AspUserId");
 
                     b.ToTable("RnkUsers");
                 });
@@ -312,7 +309,7 @@ namespace EnvRnk.DataAccess.Migrations
                 {
                     b.HasOne("EnvRnk.DataAccess.DbModels.AspUser", "AspUser")
                         .WithMany()
-                        .HasForeignKey("AspUserId1");
+                        .HasForeignKey("AspUserId");
                 });
 
             modelBuilder.Entity("EnvRnk.DataAccess.DbModels.UserArticlePoint", b =>

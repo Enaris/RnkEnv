@@ -12,7 +12,8 @@ namespace EnvRnk.AutoMapper
     {
         public RnkUserProfiles()
         {
-            CreateMap<RnkUser, RnkUserForArticleList>();
+            CreateMap<RnkUser, RnkUserForArticleList>()
+                .ForMember(d => d.Email, o => o.MapFrom(s => s.AspUser.Email));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace EnvRnk.AutoMapper
         {
             CreateMap<ArticleAddRequest, Article>();
             CreateMap<Article, ArticleForList>();
+            CreateMap<Article, ArticleDetails>();
         }
     }
 }

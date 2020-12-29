@@ -1,11 +1,12 @@
-﻿using EnvRnk.Services.DTOs.RnkUser;
+﻿using EnvRnk.Services.DTOs.Point;
+using EnvRnk.Services.DTOs.RnkUser;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EnvRnk.Services.DTOs.Article
 {
-    public class ArticleForList
+    public class ArticleDetails
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
@@ -17,6 +18,8 @@ namespace EnvRnk.Services.DTOs.Article
         public bool UserPlused { get; set; }
         public bool UserMinused { get; set; }
 
+        public Guid AuthorId { get; set; }
         public RnkUserForArticleList Author { get; set; }
+        public ICollection<PointForArticleDetails> MarkedBy { get; set; }
     }
 }

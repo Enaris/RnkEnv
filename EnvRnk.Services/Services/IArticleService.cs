@@ -9,6 +9,15 @@ namespace EnvRnk.Services.Services
     public interface IArticleService
     {
         Task<Article> Create(ArticleAddRequest request, Guid rnkUserId, string coverUrl);
-        Task<IEnumerable<ArticleForList>> GetForList(ArticleListRequest request);
+        Task<IEnumerable<ArticleForList>> GetForList(string title,
+            string email,
+            Guid? rnkUserId = null,
+            bool newArticles = true,
+            bool ranking = false,
+            bool trending = false);
+        Task<ArticleForList> PointArticle(Guid articleId, Guid rnkUserId, bool plus);
+        Task<ArticleDetails> GetDetails(Guid articleId, Guid? rnkUserId);
+        Task Delete(Article article);
+        Task<Article> GetArticleDb(Guid articleId, Guid rnkUserId);
     }
 }

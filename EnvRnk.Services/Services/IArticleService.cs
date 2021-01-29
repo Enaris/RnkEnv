@@ -16,6 +16,7 @@ namespace EnvRnk.Services.Services
             bool ranking = false,
             bool trending = false);
         Task<ArticleForList> PointArticle(Guid articleId, Guid rnkUserId, bool plus);
+        Task<ArticleForList> RemoveScore(Guid articleId, Guid rnkUserId);
         Task<ArticleDetails> GetDetails(Guid articleId, Guid? rnkUserId);
         Task Delete(Article article);
         Task<Article> GetArticleDb(Guid articleId, Guid rnkUserId);

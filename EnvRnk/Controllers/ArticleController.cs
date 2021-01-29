@@ -75,6 +75,21 @@ namespace EnvRnk.Controllers
             return Ok(changedArticle);
         }
 
+        [HttpPost("u/{aspUserId}/a/{articleId}/rmvScore")]
+        [Authorize]
+        public async Task<IActionResult> RemoveScore([FromRoute] string aspUserId, [FromRoute] string articleId)
+        {
+            var rnkUser = await rnkUserService.GetByAspId(new Guid(aspUserId));
+            if (rnkUser == null)
+                return BadRequest("Something went wrong try again later.");
+
+            var changedArticle = await articleService.RemoveScore(new Guid(articleId), rnkUser.Id);
+            if (changedArticle == null)
+                return BadRequest("Something went wrong try again later.");
+
+            return Ok(changedArticle);
+        }
+
         [HttpGet("u/{aspUserId}/a/{articleId}")]
         public async Task<IActionResult> Get(
             [FromRoute] string aspUserId,

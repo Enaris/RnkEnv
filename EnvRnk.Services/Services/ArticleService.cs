@@ -111,6 +111,38 @@ namespace EnvRnk.Services.Services
             return result;
         }
     
+        public async Task<ArticleForList> RemoveScore(Guid articleId, Guid rnkUserId)
+        {
+            var article = await articleRepository
+                .GetAll(null, null, true)
+                .FirstOrDefaultAsync(a => a.Id == articleId);
+
+            if (article == null)
+                return null;
+
+            var point = await userArticlePointRepo
+                .GetAll()
+                .FirstOrDefaultAsync(uap => uap.ArticleId == articleId && uap.UserId == rnkUserId);
+
+            if (point == null)
+                return mapper.Map<ArticleForList>(article);
+
+            userArticlePointRepo.Delete(point);
+            await userArticlePointRepo.SaveChangesAsync();
+
+            if (point.Plus)
+                --article.Pluses;
+            else
+                --article.Minuses;
+
+            articleRepository.Update(article);
+            await articleRepository.SaveChangesAsync();
+
+            var result = mapper.Map<ArticleForList>(article);
+            result.UserMinused = result.UserPlused = false;
+            return result;
+        }
+
         public async Task<ArticleDetails> GetDetails(Guid articleId, Guid? rnkUserId)
         {
             var article = await articleRepository
